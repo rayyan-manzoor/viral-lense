@@ -1,7 +1,5 @@
 "use client";
 
-import "leaflet/dist/leaflet.css";
-
 import { useEffect, useMemo, useState } from "react";
 import {
   Activity,
@@ -13,7 +11,7 @@ import {
   SkipForward
 } from "lucide-react";
 import { SpreadMap } from "@/components/spread-map";
-import type { ColorMode } from "@/components/spread-map-client";
+import type { ColorMode } from "@/components/spread-globe-client";
 import {
   CaseInputPanel,
   type NewCategoryMeta
@@ -161,7 +159,7 @@ export function SpreadExplorer() {
           </div>
           <div>
             <h1 className="max-w-3xl text-3xl font-semibold tracking-tight sm:text-5xl">
-              Watch an outbreak unfold across the map, day by day.
+              Watch an outbreak unfold across a movable 3D globe, day by day.
             </h1>
             <p className="mt-4 max-w-2xl leading-7 text-slate-300">
               {active.description}
@@ -217,7 +215,7 @@ export function SpreadExplorer() {
               <div className="flex h-full flex-col items-center justify-center gap-2 text-slate-400">
                 <Layers className="h-8 w-8" />
                 <p className="text-sm">
-                  No records in “{active.name}” yet — add data below to map the spread.
+                  No records in “{active.name}” yet — add data below to render the spread.
                 </p>
               </div>
             )}
@@ -316,7 +314,8 @@ export function SpreadExplorer() {
             </div>
             <p className="text-xs text-slate-400">
               Day {hasData ? safeIndex + 1 : 0} of {frames.length} · Drag the
-              timeline or press play to animate the spread.
+              globe to inspect the planet, or press play to animate the spread
+              with pulsing arrivals and moving flow arcs.
             </p>
           </div>
         </div>

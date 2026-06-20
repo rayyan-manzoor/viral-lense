@@ -2,11 +2,11 @@
 
 import dynamic from "next/dynamic";
 import type { ComponentProps } from "react";
-import type { SpreadMapClient } from "@/components/spread-map-client";
+import type { SpreadGlobeClient } from "@/components/spread-globe-client";
 
 const DynamicSpreadMap = dynamic(
   () =>
-    import("@/components/spread-map-client").then((m) => m.SpreadMapClient),
+    import("@/components/spread-globe-client").then((m) => m.SpreadGlobeClient),
   {
     ssr: false,
     loading: () => (
@@ -22,12 +22,12 @@ const DynamicSpreadMap = dynamic(
           color: "#64748b"
         }}
       >
-        Loading map…
+        Loading globe…
       </div>
     )
   }
 );
 
-export function SpreadMap(props: ComponentProps<typeof SpreadMapClient>) {
+export function SpreadMap(props: ComponentProps<typeof SpreadGlobeClient>) {
   return <DynamicSpreadMap {...props} />;
 }

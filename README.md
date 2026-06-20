@@ -17,7 +17,7 @@ Viral Lense is a public-health outbreak analytics dashboard that tracks simulate
 - TypeScript
 - Tailwind CSS
 - Recharts
-- Leaflet / react-leaflet (interactive maps)
+- react-globe.gl / Three.js (interactive 3D globe)
 - SheetJS (xlsx) for spreadsheet import
 - Vitest
 
@@ -32,8 +32,9 @@ Viral Lense is a public-health outbreak analytics dashboard that tracks simulate
 
 ### Geographic Spread Explorer (`/spread`)
 
-- Interactive world map (Leaflet) that plots confirmed-case locations as scaled, color-coded markers.
+- Interactive spherical globe that can be dragged, rotated, and zoomed to inspect spread globally.
 - Timeline player with play/pause, scrubbing, and restart to animate how an outbreak spreads day by day — ships with a reconstructed COVID-19 early-spread dataset (Dec 2019 – Feb 2020).
+- Visual flow layer with pulsing arrival rings and animated dashed arcs showing the inferred movement from the outbreak origin to newly affected places.
 - Population-density visualization mode to compare transmission in dense urban hubs vs. lower-density areas, plus a live "density signal" panel showing the share of cases in high- vs. low-density places.
 - Add your own data: manual single-record entry, paste CSV, or upload an Excel/CSV file (`.xlsx`, `.xls`, `.csv`) with header-based column matching.
 - Create new outbreak categories on the fly for future or hypothetical outbreaks, each tracked on its own timeline with its own accent color.
