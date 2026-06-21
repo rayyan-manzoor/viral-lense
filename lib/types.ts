@@ -1,9 +1,10 @@
 export type Region =
-  | "North Metro"
-  | "Lake County"
-  | "River Valley"
-  | "South Plains"
-  | "Coastal Bend";
+  | "North America"
+  | "South America"
+  | "Europe"
+  | "Africa"
+  | "Asia"
+  | "Oceania";
 
 export type AgeGroup = "0-17" | "18-34" | "35-49" | "50-64" | "65+";
 

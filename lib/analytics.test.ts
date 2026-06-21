@@ -12,7 +12,7 @@ describe("outbreak analytics", () => {
   it("filters records by disease, region, and age group", () => {
     const records = filterRecords(outbreakRecords, {
       disease: "Measles Resurgence",
-      region: "Lake County",
+      region: "Europe",
       ageGroup: "0-17"
     });
 
@@ -20,7 +20,7 @@ describe("outbreak analytics", () => {
     expect(records.every((record) => record.disease === "Measles Resurgence")).toBe(
       true
     );
-    expect(records.every((record) => record.region === "Lake County")).toBe(true);
+    expect(records.every((record) => record.region === "Europe")).toBe(true);
     expect(records.every((record) => record.ageGroup === "0-17")).toBe(true);
   });
 
@@ -47,14 +47,14 @@ describe("outbreak analytics", () => {
 
     const risks = regionRisk(records);
 
-    expect(risks).toHaveLength(5);
+    expect(risks).toHaveLength(6);
     expect(risks[0].riskScore).toBeGreaterThanOrEqual(risks.at(-1)?.riskScore ?? 0);
   });
 
   it("creates weekly and age-group series for visualization", () => {
     const records = filterRecords(outbreakRecords, {
       disease: "Nova Flu",
-      region: "North Metro",
+      region: "North America",
       ageGroup: "All Ages"
     });
 

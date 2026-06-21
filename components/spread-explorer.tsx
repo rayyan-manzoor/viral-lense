@@ -26,7 +26,7 @@ import {
   getRiskColor
 } from "@/lib/spread-utils";
 
-const SPEED_MS = 900;
+const SPEED_MS = 1600;
 
 export function SpreadExplorer() {
   const [datasets, setDatasets] = useState<SpreadDataset[]>(() =>
@@ -242,7 +242,9 @@ export function SpreadExplorer() {
 
             <div className="pointer-events-none absolute bottom-4 left-4 z-[1000] rounded-2xl bg-slate-950/80 px-4 py-3 text-white backdrop-blur">
               <p className="mb-2 text-xs uppercase tracking-[0.18em] text-slate-400">
-                {colorMode === "cases" ? "Confirmed cases" : "People per km²"}
+                {colorMode === "cases"
+                  ? "Confirmed cases (dots)"
+                  : "Population density (country shading)"}
               </p>
               <div className="flex flex-col gap-1.5">
                 {colorMode === "cases"
@@ -257,6 +259,12 @@ export function SpreadExplorer() {
                       <LegendRow key={t.label} color={t.color} label={t.label} />
                     ))}
               </div>
+              {colorMode === "density" && (
+                <p className="mt-2 max-w-[12rem] text-[11px] leading-4 text-slate-400">
+                  Dots mark case counts (sized by confirmed) over the shaded
+                  density map.
+                </p>
+              )}
             </div>
           </div>
 

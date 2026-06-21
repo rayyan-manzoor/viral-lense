@@ -212,7 +212,7 @@ export function OutbreakDashboard() {
         title="Regional outbreak risk queue"
         icon={<MapPinned className="h-5 w-5" />}
       >
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {regionsByRisk.map((region, index) => (
             <article
               key={region.region}

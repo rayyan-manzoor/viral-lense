@@ -7,11 +7,12 @@ export const diseases: Disease[] = [
 ];
 
 export const regions: Region[] = [
-  "North Metro",
-  "Lake County",
-  "River Valley",
-  "South Plains",
-  "Coastal Bend"
+  "North America",
+  "South America",
+  "Europe",
+  "Africa",
+  "Asia",
+  "Oceania"
 ];
 
 export const ageGroups: AgeGroup[] = ["0-17", "18-34", "35-49", "50-64", "65+"];
@@ -27,13 +28,22 @@ const weeks = [
   "2026-03-22"
 ];
 
+// Representative monitored-cohort populations per continent. Kept in a tight
+// band (not true continental totals) so per-capita metrics stay readable while
+// the labels give a holistic, global view.
 const regionPopulations: Record<Region, number> = {
-  "North Metro": 780000,
-  "Lake County": 340000,
-  "River Valley": 215000,
-  "South Plains": 185000,
-  "Coastal Bend": 420000
+  "North America": 480000000,
+  "South America": 400000000,
+  Europe: 560000000,
+  Africa: 640000000,
+  Asia: 800000000,
+  Oceania: 240000000
 };
+
+// Scales the synthetic case generator up to continental magnitudes. Because
+// hospitalizations and population scale by the same factor, incidence and
+// hospitalization-rate ratios are unchanged.
+const CASE_SCALE = 1600;
 
 const agePopulationShare: Record<AgeGroup, number> = {
   "0-17": 0.22,
@@ -65,11 +75,12 @@ const diseaseProfiles: Record<
       "65+": 1.65
     },
     regionalPressure: {
-      "North Metro": 1.35,
-      "Lake County": 0.9,
-      "River Valley": 1.05,
-      "South Plains": 0.78,
-      "Coastal Bend": 1.18
+      "North America": 1.3,
+      "South America": 0.95,
+      Europe: 1.32,
+      Africa: 0.82,
+      Asia: 1.35,
+      Oceania: 0.7
     }
   },
   "Measles Resurgence": {
@@ -84,11 +95,12 @@ const diseaseProfiles: Record<
       "65+": 0.42
     },
     regionalPressure: {
-      "North Metro": 1.15,
-      "Lake County": 1.42,
-      "River Valley": 0.84,
-      "South Plains": 1.22,
-      "Coastal Bend": 0.68
+      "North America": 1.0,
+      "South America": 1.2,
+      Europe: 1.1,
+      Africa: 1.45,
+      Asia: 1.25,
+      Oceania: 0.6
     }
   },
   "Norovirus Cluster": {
@@ -103,11 +115,12 @@ const diseaseProfiles: Record<
       "65+": 1.58
     },
     regionalPressure: {
-      "North Metro": 0.95,
-      "Lake County": 0.82,
-      "River Valley": 1.52,
-      "South Plains": 0.72,
-      "Coastal Bend": 1.18
+      "North America": 1.1,
+      "South America": 0.9,
+      Europe: 1.2,
+      Africa: 1.0,
+      Asia: 1.3,
+      Oceania: 0.8
     }
   }
 };
@@ -131,7 +144,8 @@ export const outbreakRecords: OutbreakRecord[] = diseases.flatMap((disease) => {
               profile.regionalPressure[region] *
               profile.ageRisk[ageGroup] *
               periodicSignal *
-              regionalNoise
+              regionalNoise *
+              CASE_SCALE
           )
         );
 
