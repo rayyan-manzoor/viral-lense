@@ -67,7 +67,6 @@ npm run build
 
 ## Resume Positioning
 
-Suggested resume bullet:
 
 > Built Viral Lense, a TypeScript/Next.js disease outbreak analytics dashboard that models simulated public-health surveillance data, calculates epidemiology metrics across regions and age groups, and visualizes risk trends for targeted intervention planning.
 
